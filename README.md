@@ -2,9 +2,9 @@
 
 > Pipeline otomatis yang mengambil dashboard dari Tableau lewat REST API dan mengirimkannya sebagai ringkasan email ke seluruh kepala cabang, tanpa proses manual.
 
-**Peran:** [Data/BI/Automation Engineer], [Nama Perusahaan atau "Perusahaan sektor keuangan"]
-**Periode:** [bulan/tahun mulai – sekarang]
-**Teknologi:** Talend, Tableau REST API, OAuth 2.0 / token-based email API, JSON, Python (versi demo)
+**Peran:** Data Analyst
+**Periode:** Otomatis diambil per bulan di tahun berjalan
+**Teknologi:** Talend 8.0.1, Tableau REST API, OAuth 2.0 / token-based email API, JSON
 
 > ⚠️ Seluruh nama, URL, angka, dan data pada repositori ini adalah **dummy**. Tidak ada data atau kredensial perusahaan.
 
@@ -12,11 +12,11 @@
 
 ## 1. Latar belakang dan masalah
 
-Setiap bulan, ringkasan kinerja keuangan perlu sampai ke [N] kepala cabang. Prosesnya sebelumnya manual:
+Setiap bulan, ringkasan kinerja keuangan perlu sampai ke kepala cabang. Prosesnya sebelumnya manual:
 
 - Dashboard dibuka, di-screenshot, lalu ditempel ke email satu per satu.
 - Rawan salah kirim, salah periode, atau terlambat.
-- Memakan waktu [X jam] setiap bulan dan bergantung pada satu orang.
+- Memakan waktu 2–3 jam setiap bulan dan bergantung pada satu orang.
 
 ## 2. Solusi
 
@@ -27,7 +27,7 @@ Membangun pipeline yang berjalan otomatis setiap periode:
 3. Mengambil daftar view dan menemukan dashboard target.
 4. Mengunduh dashboard sebagai gambar dan memvalidasi hasilnya.
 5. Mengambil access token untuk email API.
-6. Menyusun isi email (HTML + gambar) dan mengirim ke daftar penerima.
+6. Menyusun isi email (HTML + gambar) dan mengirimkannya ke daftar penerima.
 7. Mencatat hasil eksekusi ke log.
 
 ## 3. Arsitektur
@@ -61,12 +61,10 @@ flowchart LR
 
 ## 5. Hasil
 
-- Proses manual diganti pipeline otomatis untuk **[N] penerima** setiap bulan.
-- Estimasi penghematan waktu: **[rentang, mis. 4–6 jam/bulan]**.
+- Proses manual diganti pipeline otomatis untuk **35 penerima** setiap bulan.
+- Estimasi penghematan waktu: **2–3 jam/bulan**.
 - Mengurangi risiko salah kirim dan keterlambatan.
 - Pelaksanaan terpantau lewat log eksekusi.
-
-*(Isi angka hanya dengan rentang atau pembulatan, dan setelah mendapat izin.)*
 
 ## 6. Demo (data dummy)
 
@@ -92,15 +90,15 @@ demo/
 | Susun dan kirim email | `tJava` + `tSendMail` (SMTP uji) |
 | Logging | `tLogRow` / `tLogCatcher` |
 
-**Context variable (isi sendiri dengan nilai uji):**
+**Context variable:**
 
 ```
-bi_server_url   = https://your-site.online.tableau.com
-bi_site_name    = <SITE_NAME>
-bi_pat_name     = <TOKEN_NAME>
-bi_pat_secret   = <TOKEN_SECRET>
-smtp_host       = sandbox.smtp.mailtrap.io
-mail_to         = kepala.cabang@example.com
+bi_server_url  
+bi_site_name   
+bi_pat_name   
+bi_pat_secret   
+smtp_host      
+mail_to        
 ```
 
 **Menjalankan demo:**
@@ -109,7 +107,7 @@ mail_to         = kepala.cabang@example.com
 2. Isi nilai context dengan akun sandbox milik sendiri.
 3. Jalankan job, lalu cek email di inbox Mailtrap.
 
-> Catatan: Talend Open Studio sudah tidak dirilis lagi sejak 2024. Tulis versi Talend Studio yang dipakai di bagian teknologi, dan sertakan screenshot hasil run supaya rekruter bisa melihat hasilnya tanpa menginstal apa pun.
+<img width="859" height="484" alt="image" src="https://github.com/user-attachments/assets/cc45046d-ed12-4cd2-96f9-c54fe9ae00df" />
 
 ## 7. Pelajaran
 
@@ -119,8 +117,4 @@ mail_to         = kepala.cabang@example.com
 
 ## 8. Kontak
 
-[Nama] · [LinkedIn] · [Email]
-
----
-
-*Proyek ini dipublikasikan dengan izin [pemberi izin/divisi], dan seluruh data telah dianonimkan.*
+Aditya Virgiansyah · https://www.linkedin.com/in/adityavirgiansyah/ · adityavirgiansyah3@gmail.com
